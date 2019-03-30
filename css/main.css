@@ -3397,3 +3397,16 @@ body.mobile-nav-active #mobile-nav-toggle {
       color: #e45447; }
 
 /*# sourceMappingURL=main.css.map */
+
+
+/* My Edits */
+.logo_div a img {
+    max-width: 18%;
+}
+.brand-wrap {
+  margin-top: 67px;
+}
+.img-fluid {
+  max-width: 61%;
+}
+/* My Edits */
