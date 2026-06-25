@@ -1,642 +1,1426 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
-
+<html lang="en">
 <head>
-	<script data-ad-client="ca-pub-7405455619500683" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/fav.png">
-	<!-- Author Meta -->
-	<meta name="author" content="colorlib">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
-	<!-- meta character set -->
-	<meta charset="UTF-8">
-	<!-- Site Title -->
-	<title>Dibin Xavier</title>
+<meta charset="UTF-8">
+<link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9e0.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dibin Xavier — Senior Software Engineer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700,900" rel="stylesheet">
-	<!--
-			CSS
-			============================================= -->
-	<link rel="stylesheet" href="css/linearicons.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<link rel="stylesheet" href="css/nice-select.css">
-	<link rel="stylesheet" href="css/animate.min.css">
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/main.css">
+  :root {
+    --c1: #00f5ff;
+    --c2: #7b2fff;
+    --c3: #ff2d78;
+    --c4: #00ff88;
+    --dark: #030508;
+    --dark2: #060c14;
+    --text: #e8f4fd;
+    --muted: #5a7a94;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  #cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--c1);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease, background 0.2s;
+    mix-blend-mode: screen;
+  }
+  #cursor-ring {
+    position: fixed;
+    width: 40px; height: 40px;
+    border: 1px solid rgba(0,245,255,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.25s ease, width 0.3s, height 0.3s, border-color 0.3s;
+    transform: translate(-14px,-14px);
+  }
+  body:has(a:hover) #cursor-ring,
+  body:has(button:hover) #cursor-ring {
+    width: 60px; height: 60px;
+    border-color: rgba(123,47,255,0.6);
+    transform: translate(-24px,-24px);
+  }
+
+  /* CANVAS */
+  #bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,245,255,0.06);
+    backdrop-filter: blur(20px);
+    background: rgba(3,5,8,0.3);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--c1);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--c1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--c1); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  #sound-btn {
+    background: none;
+    border: 1px solid rgba(0,245,255,0.3);
+    color: var(--c1);
+    padding: 8px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    cursor: none;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  #sound-btn:hover {
+    background: rgba(0,245,255,0.08);
+    border-color: var(--c1);
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* HERO */
+  #hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    max-width: 900px;
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--c1);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--c1);
+  }
+
+  .hero-name {
+    font-size: clamp(60px, 9vw, 120px);
+    font-weight: 700;
+    line-height: 0.9;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+    position: relative;
+  }
+  .hero-name .first { display: block; color: var(--text); }
+  .hero-name .last {
+    display: block;
+    -webkit-text-stroke: 1px var(--c1);
+    color: transparent;
+    position: relative;
+  }
+  .hero-name .last::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    -webkit-text-stroke: 0;
+    color: var(--c1);
+    clip-path: inset(0 100% 0 0);
+    animation: revealText 2s 1.5s cubic-bezier(0.77,0,0.175,1) forwards;
+  }
+
+  .hero-role {
+    margin-top: 32px;
+    font-size: 18px;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeUp 1s 1s forwards;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  .hero-role span { color: var(--c4); }
+
+  .hero-cta {
+    margin-top: 48px;
+    display: flex;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+
+  .btn-primary {
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    color: #000;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.3s;
+    font-weight: 700;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px rgba(0,245,255,0.3);
+  }
+
+  .btn-outline {
+    padding: 16px 40px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: all 0.3s;
+  }
+  .btn-outline:hover {
+    border-color: var(--c1);
+    color: var(--c1);
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 80px;
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+  .stat-item {
+    text-align: right;
+  }
+  .stat-num {
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+    background: linear-gradient(135deg, var(--c1), var(--c4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeIn 1s 2s forwards;
+  }
+  .scroll-line {
+    width: 60px; height: 1px;
+    background: rgba(0,245,255,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--c1);
+    animation: scrollAnim 2s infinite;
+  }
+  .scroll-text {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ABOUT */
+  #about {
+    padding: 120px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--c2);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--c2);
+  }
+
+  .section-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .section-title .accent { color: var(--c1); }
+
+  .about-text {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+  .about-card {
+    background: linear-gradient(135deg, rgba(0,245,255,0.04), rgba(123,47,255,0.04));
+    border: 1px solid rgba(0,245,255,0.1);
+    border-radius: 4px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--c1), var(--c2), transparent);
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .tech-item {
+    background: rgba(0,245,255,0.03);
+    border: 1px solid rgba(0,245,255,0.1);
+    padding: 12px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--c1);
+    letter-spacing: 1px;
+    text-align: center;
+    transition: all 0.3s;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+  .tech-item:hover {
+    background: rgba(0,245,255,0.08);
+    border-color: var(--c1);
+    transform: translateY(-2px);
+  }
+
+  /* EXPERIENCE */
+  #experience {
+    padding: 120px 60px;
+  }
+
+  .exp-timeline {
+    margin-top: 60px;
+    position: relative;
+  }
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--c1), var(--c2), transparent);
+  }
+
+  .exp-item {
+    padding-left: 48px;
+    margin-bottom: 64px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s;
+  }
+  .exp-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 6px;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--c1);
+    box-shadow: 0 0 20px var(--c1);
+  }
+
+  .exp-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--c1);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .exp-company {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .exp-role {
+    font-size: 14px;
+    color: var(--c4);
+    margin-bottom: 16px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+  }
+  .exp-desc {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .exp-desc li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    list-style: none;
+  }
+  .exp-desc li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--c1);
+  }
+
+  /* PROJECTS */
+  #projects {
+    padding: 120px 60px;
+    background: rgba(6,12,20,0.6);
+  }
+
+  .projects-grid {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .project-card {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,245,255,0.08);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    transition: all 0.4s;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,245,255,0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-card:hover {
+    border-color: rgba(0,245,255,0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 40px 80px rgba(0,245,255,0.1);
+  }
+
+  .project-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .project-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .project-type {
+    font-size: 12px;
+    color: var(--c1);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 20px;
+  }
+
+  .project-desc {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .project-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .project-highlights li {
+    list-style: none;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    padding-left: 16px;
+    position: relative;
+  }
+  .project-highlights li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--c4);
+    font-size: 11px;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .stack-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--c2);
+    border: 1px solid rgba(123,47,255,0.3);
+    padding: 4px 10px;
+    letter-spacing: 1px;
+  }
+
+  .project-corner {
+    position: absolute;
+    top: 0; right: 0;
+    width: 20px; height: 20px;
+    border-top: 1px solid var(--c1);
+    border-right: 1px solid var(--c1);
+    opacity: 0.5;
+  }
+  .project-card:hover .project-corner { opacity: 1; }
+
+  /* METRICS */
+  #metrics {
+    padding: 100px 60px;
+    text-align: center;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .metric-item {
+    padding: 48px 32px;
+    border: 1px solid rgba(0,245,255,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--c1), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s;
+  }
+  .metric-item:hover::after { transform: scaleX(1); }
+
+  .metric-num {
+    font-size: 56px;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+    background: linear-gradient(135deg, var(--c1), var(--c4));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .metric-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* EDUCATION */
+  #education {
+    padding: 120px 60px;
+  }
+
+  .edu-grid {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .edu-card {
+    border: 1px solid rgba(0,245,255,0.08);
+    padding: 40px;
+    position: relative;
+    background: rgba(0,0,0,0.3);
+    transition: all 0.4s;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--c2), transparent);
+  }
+  .edu-card:hover {
+    border-color: rgba(0,245,255,0.2);
+    transform: translateX(4px);
+  }
+
+  .edu-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--c2);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .edu-degree {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .edu-inst {
+    font-size: 14px;
+    color: var(--c4);
+    margin-bottom: 12px;
+    font-family: 'Space Mono', monospace;
+  }
+  .edu-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  #contact {
+    padding: 120px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: 'CONTACT';
+    position: absolute;
+    font-size: 200px;
+    font-weight: 700;
+    color: rgba(0,245,255,0.02);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Space Mono', monospace;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .contact-headline {
+    font-size: clamp(40px, 7vw, 80px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .contact-sub {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  .contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+  }
+  .contact-link:hover { color: var(--c1); transform: translateY(-4px); }
+  .contact-link-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+  }
+  .contact-link-value {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 60px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .footer-copy {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+  .footer-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--c4);
+    font-family: 'Space Mono', monospace;
+  }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--c4);
+    animation: pulse 2s infinite;
+  }
+
+  /* GLITCH EFFECT */
+  .glitch {
+    position: relative;
+  }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .glitch::before {
+    color: var(--c3);
+    clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+    transform: translate(-2px);
+    animation: glitch1 4s infinite;
+  }
+  .glitch::after {
+    color: var(--c1);
+    clip-path: polygon(0 65%, 100% 65%, 100% 75%, 0 75%);
+    transform: translate(2px);
+    animation: glitch2 4s infinite;
+  }
+
+  /* SCAN LINE */
+  .scanline {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: rgba(0,245,255,0.15);
+    z-index: 9997;
+    animation: scan 8s linear infinite;
+    pointer-events: none;
+  }
+
+  /* CORNER DECORATIONS */
+  .corner-deco {
+    position: fixed;
+    z-index: 50;
+    pointer-events: none;
+  }
+  .corner-deco.tl { top: 16px; left: 16px; border-top: 1px solid rgba(0,245,255,0.3); border-left: 1px solid rgba(0,245,255,0.3); width: 40px; height: 40px; }
+  .corner-deco.tr { top: 16px; right: 16px; border-top: 1px solid rgba(0,245,255,0.3); border-right: 1px solid rgba(0,245,255,0.3); width: 40px; height: 40px; }
+  .corner-deco.bl { bottom: 16px; left: 16px; border-bottom: 1px solid rgba(0,245,255,0.3); border-left: 1px solid rgba(0,245,255,0.3); width: 40px; height: 40px; }
+  .corner-deco.br { bottom: 16px; right: 16px; border-bottom: 1px solid rgba(0,245,255,0.3); border-right: 1px solid rgba(0,245,255,0.3); width: 40px; height: 40px; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes revealText {
+    to { clip-path: inset(0 0% 0 0); }
+  }
+  @keyframes scrollAnim {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  @keyframes scan {
+    0% { top: -2px; }
+    100% { top: 100vh; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  @keyframes glitch1 {
+    0%, 90%, 100% { transform: translate(0); }
+    91% { transform: translate(-3px, 1px); }
+    92% { transform: translate(3px, -1px); }
+    93% { transform: translate(-3px, 1px); }
+  }
+  @keyframes glitch2 {
+    0%, 88%, 100% { transform: translate(0); }
+    89% { transform: translate(3px, -1px); }
+    90% { transform: translate(-3px, 1px); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    #about { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .edu-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    #hero { padding: 0 24px; }
+    #about, #experience, #projects, #metrics, #education, #contact { padding: 80px 24px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { display: none; }
+    footer { flex-direction: column; gap: 16px; padding: 24px; }
+  }
+</style>
 </head>
-
 <body>
 
-	<!-- Start Preloader Area -->
-	<div class="preloader-area">
-		<div class="loader-box">
-			<div class="loader"></div>
-		</div>
-	</div>
-	<!-- End Preloader Area -->
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- SCAN LINE -->
+<div class="scanline"></div>
+
+<!-- CORNER DECORATIONS -->
+<div class="corner-deco tl"></div>
+<div class="corner-deco tr"></div>
+<div class="corner-deco bl"></div>
+<div class="corner-deco br"></div>
+
+<!-- BACKGROUND CANVAS -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- AUDIO -->
+<audio id="ambient-audio" loop>
+  <source src="https://cdn.jsdelivr.net/gh/dibinxavier/dibinxavier.github.io/ambient.mp3" type="audio/mpeg">
+</audio>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Hello World!</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button id="sound-btn" onclick="toggleSound()">▶ AMBIENT</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Senior Software Engineer</div>
+    <h1 class="hero-name">
+      <span class="first">DIBIN</span>
+      <span class="last glitch" data-text="XAVIER">XAVIER</span>
+    </h1>
+    <p class="hero-role">
+      Backend Engineer crafting <span>high-performance systems</span> for fintech & payments.<br>
+      5+ years in Golang. Building at scale. Shipping with purpose.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num" data-target="6000">0</div>
+      <div class="stat-label">+ Clients</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-target="100">0</div>
+      <div class="stat-label">K+ Txn/Month</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" data-target="5">0</div>
+      <div class="stat-label">+ Years</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left reveal-left">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-title">
+      Building Systems<br>That <span class="accent">Scale</span>
+    </h2>
+    <p class="about-text">
+      Senior Backend Engineer with 5+ years of experience working in Golang on backend systems for fintech and payments. I build fast, reliable infrastructure — the kind that doesn't flinch under load.
+    </p>
+    <p class="about-text">
+      From real-time payment flows and fee collection platforms to crypto tax engines — I design systems where ownership and scale matter. Based in Kochi, building for the world.
+    </p>
+  </div>
+  <div class="about-visual reveal-right">
+    <div class="about-card">
+      <div class="section-label" style="margin-bottom:28px;">Core Stack</div>
+      <div class="tech-grid">
+        <div class="tech-item">Golang</div>
+        <div class="tech-item">PostgreSQL</div>
+        <div class="tech-item">Redis</div>
+        <div class="tech-item">Docker</div>
+        <div class="tech-item">AWS</div>
+        <div class="tech-item">Linux</div>
+        <div class="tech-item">Microservices</div>
+        <div class="tech-item">REST APIs</div>
+        <div class="tech-item">MySQL</div>
+        <div class="tech-item">React</div>
+        <div class="tech-item">Flutter</div>
+        <div class="tech-item">Git</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="section-label" style="justify-content:center;">Impact</div>
+  <h2 class="section-title" style="text-align:center;">Numbers That<br><span class="accent">Matter</span></h2>
+  <div class="metrics-grid">
+    <div class="metric-item">
+      <div class="metric-num counter" data-target="6000">0</div>
+      <div class="metric-label">+ Clients Served</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-num counter" data-target="100">0</div>
+      <div class="metric-label">K+ Transactions/Month</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-num counter" data-target="5">0</div>
+      <div class="metric-label">+ Years Experience</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-num counter" data-target="3">0</div>
+      <div class="metric-label">+ Fintech Platforms</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Work <span class="accent">Experience</span></h2>
+
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-period">Jul 2021 — Present</div>
+      <div class="exp-company">KeyValue Software Systems</div>
+      <div class="exp-role">Senior Software Engineer · Kochi</div>
+      <ul class="exp-desc">
+        <li>Designed and built scalable backend systems for fintech and payment platforms</li>
+        <li>Expertise in Golang, REST APIs, microservices, and production databases</li>
+        <li>Managed live deployments, monitoring, and system reliability at scale</li>
+        <li>Integrated payment gateways: EaseBuzz, Cashfree, and Omniware</li>
+        <li>Built crypto wallet integrations for transaction aggregation and tax computation</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-period">May 2017 — Jul 2018</div>
+      <div class="exp-company">Techrish Solutions</div>
+      <div class="exp-role">Software Engineer · Kochi</div>
+      <ul class="exp-desc">
+        <li>Full-stack developer building web applications end-to-end</li>
+        <li>Backend modules using PHP, CodeIgniter, and MySQL</li>
+        <li>Collaborated with cross-functional teams to deliver client projects</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Work</div>
+  <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
+
+  <div class="projects-grid">
+    <div class="project-card reveal-up">
+      <div class="project-corner"></div>
+      <div class="project-number">01 / FINTECH</div>
+      <div class="project-title">Fee Collection Platform</div>
+      <div class="project-type">Recurring Payments</div>
+      <p class="project-desc">Automated fee collection with payment requests, reminders, and real-time settlement. Scaled to 6000+ clients.</p>
+      <ul class="project-highlights">
+        <li>100K+ transactions processed monthly</li>
+        <li>Real-time payment processing & reconciliation</li>
+        <li>Third-party payment gateway integrations</li>
+        <li>Optimized SQL for high-concurrency workloads</li>
+      </ul>
+      <div class="project-stack">
+        <span class="stack-tag">Golang</span>
+        <span class="stack-tag">Gin</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Flutter</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal-up" style="transition-delay:0.1s">
+      <div class="project-corner"></div>
+      <div class="project-number">02 / CRYPTO</div>
+      <div class="project-title">Crypto Tax Calculator</div>
+      <div class="project-type">Tax Computation Engine</div>
+      <p class="project-desc">Tax calculation for crypto transactions — aggregates wallet data, normalizes across chains, computes liabilities.</p>
+      <ul class="project-highlights">
+        <li>Multi-exchange integrations: Binance, WazirX, KuCoin, CoinDCX</li>
+        <li>Blockchain data normalization across sources</li>
+        <li>Automated tax report generation</li>
+        <li>CSV upload + wallet connection flows</li>
+      </ul>
+      <div class="project-stack">
+        <span class="stack-tag">Golang</span>
+        <span class="stack-tag">Gin</span>
+        <span class="stack-tag">React</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal-up" style="transition-delay:0.2s">
+      <div class="project-corner"></div>
+      <div class="project-number">03 / PAYMENTS</div>
+      <div class="project-title">Scan & Pay Platform</div>
+      <div class="project-type">QR Payment System · US</div>
+      <p class="project-desc">US-focused QR payment platform enabling service professionals to accept digital payments with real-time bank settlement.</p>
+      <ul class="project-highlights">
+        <li>QR-based payments with instant bank settlement</li>
+        <li>Merchant workflow APIs: track, process, settle</li>
+        <li>Built for plumbers, electricians, field service pros</li>
+        <li>Transaction tracking and reporting dashboards</li>
+      </ul>
+      <div class="project-stack">
+        <span class="stack-tag">Golang</span>
+        <span class="stack-tag">Gin</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Flutter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Formation</div>
+  <h2 class="section-title">Education &<br><span class="accent">Background</span></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2018 — 2021</div>
+      <div class="edu-degree">B.Tech — Computer Science</div>
+      <div class="edu-inst">Govt. Model Engineering College, Thrikkakkara</div>
+      <p class="edu-desc">Strong grounding in web development, data structures, and software engineering fundamentals.</p>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2014 — 2017</div>
+      <div class="edu-degree">Diploma — Computer Science</div>
+      <div class="edu-inst">Govt. Polytechnic College, Kalamassery</div>
+      <p class="edu-desc">Technical foundation in computing, networking, and applied software development.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="justify-content:center;">Let's Talk</div>
+  <h2 class="contact-headline">Open for <span style="color:var(--c1)">New<br>Opportunities</span></h2>
+  <p class="contact-sub">Looking for backend roles in product-focused teams where ownership and scale matter.</p>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:dibinxavier.mec@gmail.com">
+      <span class="contact-link-label">Email</span>
+      <span class="contact-link-value">dibinxavier.mec@gmail.com</span>
+    </a>
+    <a class="contact-link" href="tel:+918714812137">
+      <span class="contact-link-label">Phone</span>
+      <span class="contact-link-value">+91 8714812137</span>
+    </a>
+    <a class="contact-link" href="#">
+      <span class="contact-link-label">Location</span>
+      <span class="contact-link-value">Kochi, Kerala</span>
+    </a>
+  </div>
+  <a href="mailto:dibinxavier.mec@gmail.com" class="btn-primary" style="display:inline-block">Send Message</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© <span id="year"></span> Dibin Xavier — All systems operational</div>
+  <div class="footer-status">
+    <div class="status-dot"></div>
+    Available for opportunities
+  </div>
+</footer>
 
 
-	<!-- Start Header Area -->
-	<header id="header">
-		<div class="container main-menu">
-			<div class="row align-items-center d-flex">
-				<div id="log" class="logo_div">
-					<a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-				</div>
-				<nav id="nav-menu-container">
-					<ul class="nav-menu">
-						<li class=""><a class="active" href="index.html">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="portfolio.html">Portfolio</a></li>
-						<li class="menu-has-children"><a href="#">Pages</a>
-							<ul>
-								<li><a href="elements.html">Elements</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li><a href="services.html">Service</a></li>
-								<li><a href="portfolio-details.html">Portfolio Details</a></li>
-							</ul>
-						</li>
-						<li class="menu-has-children"><a href="">Blog</a>
-							<ul>
-								<li><a href="blog-home.html">Blog Home</a></li>
-								<li><a href="blog-single.html">Blog Single</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
-	<!-- End Header Area -->
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
+<script>
+// === CUSTOM CURSOR ===
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx - 6 + 'px';
+  cursor.style.top = my - 6 + 'px';
+});
+function animRing() {
+  rx += (mx - rx - 20) * 0.12;
+  ry += (my - ry - 20) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
 
-	<!-- start banner Area -->
-	<section class="home-banner-area">
-		<div class="container">
-			<div class="row fullscreen d-flex align-items-center">
-				<div class="banner-content col-lg-6 col-md-12 justify-content-center ">
-					<div class="me wow fadeInDown" data-wow-duration="1s" data-wow-delay="1.2s">It's me</div>
-					<h1 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.7s">Dibin Xavier</h1>
-					<div class="designation mb-50 wow fadeInUp" data-wow-duration="1s" data-wow-delay="2.1s">
-						Building Bridges Between
-						<span class="designer">Vision</span>
-						and
-						<span class="designer">Reality</span>
-					</div>
-					<a href="#" class="primary-btn" data-text="Hire Me">
-						<span>H</span>
-						<span>i</span>
-						<span>r</span>
-						<span>e</span>
-						<span> </span>
-						<span>M</span>
-						<span>e</span>
-					</a>
-				</div>
-<!-- <div class="banner-img col-lg-6 col-md-6 align-self-end">
-					<div class="login100-pic js-tilt" data-tilt>
-					    <img src="img/3d3.png" alt="IMG">
-					</div>
-				</div> -->
-			</div>
-		</div>
-	</section>
-	<!-- End banner Area -->
+// === PARTICLE CANVAS ===
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [], lines = [];
 
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
 
-	<!-- Start brands Area -->
-	<!-- <section class="brands-area">
-		<div class="container">
-			<div class="brand-wrap">
-				<div class="row align-items-center active-brand-carusel justify-content-start no-gutters">
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/brand/b1.png" alt=""></a>
-					</div>
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/brand/b2.png" alt=""></a>
-					</div>
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/brand/b3.png" alt=""></a>
-					</div>
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/brand/b4.png" alt=""></a>
-					</div>
-					<div class="col single-brand">
-						<a href="#"><img class="mx-auto" src="img/brand/b5.png" alt=""></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> -->
-	<!-- End brands Area -->
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+    this.size = Math.random() * 1.5 + 0.5;
+    this.life = 1;
+    this.type = Math.random() > 0.7 ? 'glow' : 'dot';
+    const palette = ['#00f5ff','#7b2fff','#00ff88','#ff2d78'];
+    this.color = palette[Math.floor(Math.random() * palette.length)];
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    if (this.type === 'glow') {
+      const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 6);
+      g.addColorStop(0, this.color + 'cc');
+      g.addColorStop(1, this.color + '00');
+      ctx.fillStyle = g;
+      ctx.arc(this.x, this.y, this.size * 6, 0, Math.PI * 2);
+    } else {
+      ctx.fillStyle = this.color + '88';
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    }
+    ctx.fill();
+  }
+}
 
+// Create particles
+for (let i = 0; i < 120; i++) particles.push(new Particle());
 
-	<!-- Start About Area -->
-	<section class="about-area section-gap" style="    padding-top: 0px;">
-		<div class="container">
-			<div class="row align-items-center justify-content-between">
-				<div class="col-lg-6 about-left">
-					<img class="img-fluid" src="img/about-img.png" alt="">
-				</div>
-				<div class="col-lg-5 col-md-12 about-right">
-					<div class="section-title">
-						<h2>about myself</h2>
-					</div>
-					<div class="mb-50 wow fadeIn" data-wow-duration=".8s">
-						<p>
-							inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the
-							workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior
-							is often laughed. inappropriate behavior is often laughed off as “boys will be boys,” women face higher.
-						</p>
-						<p>That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often
-							laughed.
-						</p>
-					</div>
-					<a href="#" class="primary-btn white" data-text="More Info">
-						<span>M</span>
-						<span>o</span>
-						<span>r</span>
-						<span>e</span>
-						<span> </span>
-						<span>I</span>
-						<span>n</span>
-						<span>f</span>
-						<span>o</span>
-					</a>
-					<a href="#" class="primary-btn" data-text="Resume">
-						<span>R</span>
-						<span>e</span>
-						<span>s</span>
-						<span>u</span>
-						<span>m</span>
-						<span>e</span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End About Area -->
+// Grid lines
+function drawGrid() {
+  ctx.strokeStyle = 'rgba(0,245,255,0.025)';
+  ctx.lineWidth = 0.5;
+  const spacing = 80;
+  for (let x = 0; x < W; x += spacing) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  }
+  for (let y = 0; y < H; y += spacing) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+}
 
+// Connection lines
+function drawConnections() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 120) {
+        const alpha = (1 - dist/120) * 0.15;
+        ctx.strokeStyle = `rgba(0,245,255,${alpha})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
 
-	<!-- Start Work Area Area -->
-	<section class="work-area section-gap-top section-gap-bottom-90" id="work">
-		<div class="container">
-			<div class="row d-flex justify-content-between align-items-end mb-80">
-				<div class="col-lg-6">
-					<div class="section-title">
-						<h2>Latest Works</h2>
-						<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see
-							some for as low as $.17 each.</p>
-					</div>
-				</div>
+// Mouse influence
+let mouseX = W/2, mouseY = H/2;
+document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 
-				<div class="col-lg-6">
-					<div class="filters">
-						<ul>
-							<li class="active" data-filter=".all">All Categories</li>
-							<li data-filter=".branding">Branding</li>
-							<li data-filter=".creative">Creative Work</li>
-							<li data-filter=".web-design">Web Design</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+function animCanvas() {
+  ctx.clearRect(0, 0, W, H);
+  drawGrid();
 
-			<div class="filters-content">
-				<div class="row grid">
-					<div class="single-work col-lg-4 col-md-6 col-sm-12 all creative wow fadeInUp" data-wow-duration="2s">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="img/work/w1.jpg" alt="">
-							</div>
-							<div class="middle">
-								<h4>2D Vinyl Design</h4>
-								<div class="cat">Client Project</div>
-							</div>
-							<a class="overlay" href="portfolio-details.html"></a>
-						</div>
-					</div>
-					<div class="single-work col-lg-4 col-md-6 col-sm-12 all web-design branding wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="img/work/w2.jpg" alt="">
-							</div>
-							<div class="middle">
-								<h4>2D Vinyl Design</h4>
-								<div class="cat">Client Project</div>
-							</div>
-							<a class="overlay" href="portfolio-details.html"></a>
-						</div>
-					</div>
-					<div class="single-work col-lg-4 col-md-6 col-sm-12 all branding web-design wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="img/work/w3.jpg" alt="">
-							</div>
-							<div class="middle">
-								<h4>2D Vinyl Design</h4>
-								<div class="cat">Client Project</div>
-							</div>
-							<a class="overlay" href="portfolio-details.html"></a>
-						</div>
-					</div>
-					<div class="single-work col-lg-4 col-md-6 col-sm-12 all web-design wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="img/work/w6.jpg" alt="">
-							</div>
-							<div class="middle">
-								<h4>2D Vinyl Design</h4>
-								<div class="cat">Client Project</div>
-							</div>
-							<a class="overlay" href="portfolio-details.html"></a>
-						</div>
-					</div>
-					<div class="single-work col-lg-4 col-md-6 col-sm-12 all creative wow fadeInUp" data-wow-duration="2s">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="img/work/w4.jpg" alt="">
-							</div>
-							<div class="middle">
-								<h4>2D Vinyl Design</h4>
-								<div class="cat">Client Project</div>
-							</div>
-							<a class="overlay" href="portfolio-details.html"></a>
-						</div>
-					</div>
-					<div class="single-work col-lg-4 col-md-6 col-sm-12 all branding wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
-						<div class="relative">
-							<div class="thumb">
-								<div class="overlay overlay-bg"></div>
-								<img class="image img-fluid" src="img/work/w5.jpg" alt="">
-							</div>
-							<div class="middle">
-								<h4>2D Vinyl Design</h4>
-								<div class="cat">Client Project</div>
-							</div>
-							<a class="overlay" href="portfolio-details.html"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Work Area Area -->
+  // Mouse glow
+  const mg = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 200);
+  mg.addColorStop(0, 'rgba(0,245,255,0.04)');
+  mg.addColorStop(1, 'rgba(0,245,255,0)');
+  ctx.fillStyle = mg;
+  ctx.fillRect(0, 0, W, H);
 
+  particles.forEach(p => {
+    // Mouse repulsion
+    const dx = p.x - mouseX;
+    const dy = p.y - mouseY;
+    const d = Math.sqrt(dx*dx + dy*dy);
+    if (d < 100) {
+      p.vx += dx / d * 0.3;
+      p.vy += dy / d * 0.3;
+      const speed = Math.sqrt(p.vx*p.vx + p.vy*p.vy);
+      if (speed > 2) { p.vx = p.vx/speed*2; p.vy = p.vy/speed*2; }
+    }
+    p.update();
+    p.draw();
+  });
 
-	<!-- Start Job History Area Area -->
-	<section class="job-area section-gap-top section-gap-bottom-90">
-		<div class="container">
-			<div class="row d-flex">
-				<div class="col-lg-12">
-					<div class="section-title">
-						<h2>Job History</h2>
-						<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see
-							some for as low as $.17 each.</p>
-					</div>
-				</div>
-			</div>
+  drawConnections();
+  requestAnimationFrame(animCanvas);
+}
+animCanvas();
 
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="single-job">
-						<div class="top-sec d-flex justify-content-between">
-							<div class="top-left">
-								<h4>Senior Creative Design</h4>
-								<p>Old Bird IT, New Yorkt</p>
-							</div>
-							<div class="top-right">
-								<a href="#" class="primary-btn" data-text="Jul '15 to Present">
-									<span>J</span><span>u</span><span>l</span>
-									<span>'</span><span>1</span><span>5</span>
-									<span>t</span><span>o</span>
-									<span>P</span><span>r</span><span>e</span><span>s</span><span>e</span><span>n</span><span>t</span>
-								</a>
-							</div>
-						</div>
-						<div class="bottom-sec wow fadeIn" data-wow-duration="2s">
-							All users on MySpace will know that there are millions of people out there. Every day besides. All users on My will know
-							that there are millions of people out of the field there.
-						</div>
-					</div>
-				</div>
+// === COUNTER ANIMATION ===
+function animateCounter(el, target) {
+  let current = 0;
+  const step = Math.ceil(target / 80);
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current.toLocaleString();
+    if (current >= target) clearInterval(timer);
+  }, 20);
+}
 
-				<div class="col-lg-6">
-					<div class="single-job">
-						<div class="top-sec d-flex justify-content-between">
-							<div class="top-left">
-								<h4>Senior Visualiser</h4>
-								<p>Old Bird IT, New Yorkt</p>
-							</div>
-							<div class="top-right">
-								<a href="#" class="primary-btn" data-text="Jul '15 to Present">
-									<span>J</span><span>u</span><span>l</span>
-									<span>'</span><span>1</span><span>5</span>
-									<span>t</span><span>o</span>
-									<span>P</span><span>r</span><span>e</span><span>s</span><span>e</span><span>n</span><span>t</span>
-								</a>
-							</div>
-						</div>
-						<div class="bottom-sec wow fadeIn" data-wow-duration="2s" data-wow-delay="0.2s">
-							All users on MySpace will know that there are millions of people out there. Every day besides. All users on My will know
-							that there are millions of people out of the field there.
-						</div>
-					</div>
-				</div>
+// === SCROLL REVEAL ===
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // counters
+      if (e.target.classList.contains('counter')) {
+        animateCounter(e.target, parseInt(e.target.dataset.target));
+      }
+    }
+  });
+}, { threshold: 0.1 });
 
-				<div class="col-lg-6">
-					<div class="single-job">
-						<div class="top-sec d-flex justify-content-between">
-							<div class="top-left">
-								<h4>Junior Visualiser</h4>
-								<p>Old Bird IT, New Yorkt</p>
-							</div>
-							<div class="top-right">
-								<a href="#" class="primary-btn" data-text="Jul '15 to Present">
-									<span>J</span><span>u</span><span>l</span>
-									<span>'</span><span>1</span><span>5</span>
-									<span>t</span><span>o</span>
-									<span>P</span><span>r</span><span>e</span><span>s</span><span>e</span><span>n</span><span>t</span>
-								</a>
-							</div>
-						</div>
-						<div class="bottom-sec wow fadeIn" data-wow-duration="2s" data-wow-delay="0.4s">
-							All users on MySpace will know that there are millions of people out there. Every day besides. All users on My will know
-							that there are millions of people out of the field there.
-						</div>
-					</div>
-				</div>
+document.querySelectorAll('.exp-item, .counter, .project-card, .edu-card').forEach(el => observer.observe(el));
 
-				<div class="col-lg-6">
-					<div class="single-job">
-						<div class="top-sec d-flex justify-content-between">
-							<div class="top-left">
-								<h4>Intern Designer</h4>
-								<p>Old Bird IT, New Yorkt</p>
-							</div>
-							<div class="top-right">
-								<a href="#" class="primary-btn" data-text="Jul '15 to Present">
-									<span>J</span><span>u</span><span>l</span>
-									<span>'</span><span>1</span><span>5</span>
-									<span>t</span><span>o</span>
-									<span>P</span><span>r</span><span>e</span><span>s</span><span>e</span><span>n</span><span>t</span>
-								</a>
-							</div>
-						</div>
-						<div class="bottom-sec wow fadeIn" data-wow-duration="2s" data-wow-delay="0.6s">
-							All users on MySpace will know that there are millions of people out there. Every day besides. All users on My will know
-							that there are millions of people out of the field there.
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Job Historyt Area Area -->
+// Also animate hero counters on load
+setTimeout(() => {
+  document.querySelectorAll('[data-target]').forEach(el => {
+    if (!el.classList.contains('counter')) {
+      animateCounter(el, parseInt(el.dataset.target));
+    }
+  });
+}, 1600);
 
+// === SOUND ===
+const audio = document.getElementById('ambient-audio');
+let soundOn=false
+function toggleSound() {
+  const btn = document.getElementById('sound-btn');
+  if (soundOn) {
+    audio.pause();
+    btn.textContent = '▶ AMBIENT';
+    soundOn = false;
+  } else {
+    audio.volume = 0.15;
+    audio.play().catch(() => {});
+    btn.textContent = '■ MUTE';
+    soundOn = true;
+  }
+}
 
-	<!-- Start Service Area -->
-	<section class="service-area section-gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title">
-						<h2>Service Offers</h2>
-						<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see
-							some for as low as $.17 each.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="single-service wow fadeInUp" data-wow-duration="1s">
-						<span class="lnr lnr-screen"></span>
-						<h4>
-							<span>Web</span> Design
-						</h4>
-						<p>If you’re looking blank casvsettes on the web, you may confuse.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="single-service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-						<span class="lnr lnr-laptop-phone"></span>
-						<h4><span>Application</span> Development
-						</h4>
-						<p>If you’re looking blank casvsettes on the web, you may confuse.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="single-service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-						<span class="lnr lnr-database"></span>
-						<h4><span>Web</span> Development
-						</h4>
-						<p>If you’re looking blank casvsettes on the web, you may confuse.</p>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="single-service wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
-						<span class="lnr lnr-chart-bars"></span>
-						<h4><span>Web</span> Development
-						</h4>
-						<p>If you’re looking blank casvsettes on the web, you may confuse.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Service Area -->
+// === REVEAL ANIMATIONS ON SCROLL ===
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translate(0, 0)';
+    }
+  });
+}, { threshold: 0.15 });
 
+document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up').forEach(el => {
+  if (el.classList.contains('reveal-left')) { el.style.opacity = '0'; el.style.transform = 'translateX(-40px)'; }
+  if (el.classList.contains('reveal-right')) { el.style.opacity = '0'; el.style.transform = 'translateX(40px)'; }
+  if (el.classList.contains('reveal-up')) { el.style.opacity = '0'; el.style.transform = 'translateY(40px)'; }
+  el.style.transition = 'all 0.8s cubic-bezier(0.16,1,0.3,1)';
+  revealObs.observe(el);
+});
 
-	<!-- Start Testimonials Area -->
-	<section class="testimonials_area section-gap">
-		<div class="container">
-			<div class="testi_slider owl-carousel">
-				<div class="item">
-					<div class="testi_item">
-						<img src="img/quote.png" alt="">
-						<h4>Fanny Spencer</h4>
-						<ul class="list">
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-						</ul>
-						<div class="wow fadeIn" data-wow-duration="1s">
-							<p>
-								As conscious traveling Paup ers we must always be oncerned about our dear Mother Earth. If you think about it, you travel
-								across her face <br> and She is the host to your journey.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="testi_item">
-						<img src="img/quote.png" alt="">
-						<h4>Fanny Spencer</h4>
-						<ul class="list">
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-						</ul>
-						<div class="wow fadeIn" data-wow-duration="1s">
-							<p>
-								As conscious traveling Paup ers we must always be oncerned about our dear Mother Earth. If you think about it, you travel
-								across her face <br> and She is the host to your journey.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="testi_item">
-						<img src="img/quote.png" alt="">
-						<h4>Fanny Spencer</h4>
-						<ul class="list">
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-							<li><a href="#"><i class="fa fa-star"></i></a></li>
-						</ul>
-						<div class="wow fadeIn" data-wow-duration="1s">
-							<p>
-								As conscious traveling Paup ers we must always be oncerned about our dear Mother Earth. If you think about it, you travel
-								across her face <br> and She is the host to your journey.
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Testimonials Area -->
+// === PARALLAX ON HERO NAME ===
+document.addEventListener('mousemove', e => {
+  const rx2 = (e.clientX / W - 0.5) * 20;
+  const ry2 = (e.clientY / H - 0.5) * 10;
+  const name = document.querySelector('.hero-name');
+  if (name) name.style.transform = `translate(${rx2 * 0.3}px, ${ry2 * 0.3}px)`;
+});
 
+// === TYPING EFFECT FOR ROLE ===
+const roleSpan = document.querySelector('.hero-role span');
+if (roleSpan) {
+  const texts = ['high-performance systems', 'payment infrastructure', 'fintech backends', 'scalable APIs'];
+  let ti = 0, ci = 0, deleting = false;
+  function typeLoop() {
+    const text = texts[ti];
+    if (!deleting) {
+      roleSpan.textContent = text.slice(0, ci++);
+      if (ci > text.length) { deleting = true; setTimeout(typeLoop, 2000); return; }
+    } else {
+      roleSpan.textContent = text.slice(0, ci--);
+      if (ci < 0) { deleting = false; ti = (ti+1) % texts.length; ci = 0; }
+    }
+    setTimeout(typeLoop, deleting ? 40 : 80);
+  }
+  setTimeout(typeLoop, 2000);
+}
 
-	<!-- Start Contact Area -->
-	<section class="contact-area section-gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="contact-title">
-						<h2>Contact Me</h2>
-						<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price. You may see
-							some for as low as $.17 each.</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row mt-80">
-				<div class="col-lg-4 col-md-4">
-					<div class="contact-box">
-						<h4>+91 8714 812137</h4>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4">
-					<div class="contact-box">
-						<h4>dibinxavier999@gmail.com</h4>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4">
-					<div class="contact-box">
-						<h4>itsdibin.weebly.com</h4>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<a href="#" class="primary-btn mt-50" data-text="Hire Me">
-						<span>H</span>
-						<span>i</span>
-						<span>r</span>
-						<span>e</span>
-						<span> </span>
-						<span>M</span>
-						<span>e</span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End Contact Area -->
-
-
-	<!-- start footer Area -->
-	<footer class="footer-area">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-12">
-					<div class="footer-top flex-column">
-						<div class="footer-logo">
-							<a href="#">
-								<img src="img/logo.png" alt="" style="max-width: 7%;">
-							</a>
-							<h4>Follow Me</h4>
-						</div>
-						<div class="footer-social">
-							<a href="https://www.facebook.com/dibinxavier"><i class="fa fa-facebook"></i></a>
-							<a href="https://www.instagram.com/im_dibin/"><i class="fa fa-instagram"></i></a>
-							<a href="https://twitter.com/dibinxavier369"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row footer-bottom justify-content-center">
-				<p class="col-lg-8 col-sm-12 footer-text"></p>
-			</div>
-		</div>
-	</footer>
-	<!-- End footer Area -->
-
-	<!-- ####################### Start Scroll to Top Area ####################### -->
-	<div id="back-top">
-		<a title="Go to Top" href="#">
-			<i class="lnr lnr-arrow-up"></i>
-		</a>
-	</div>
-	<!-- ####################### End Scroll to Top Area ####################### -->
-
-	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	 crossorigin="anonymous"></script>
-	<script src="js/vendor/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-	<script src="js/easing.min.js"></script>
-	<script src="js/hoverIntent.js"></script>
-	<script src="js/superfish.min.js"></script>
-	<script src="js/mn-accordion.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.nice-select.min.js"></script>
-	<script src="js/isotope.pkgd.min.js"></script>
-	<script src="js/jquery.circlechart.js"></script>
-	<script src="js/mail-script.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/tilt.jquery.min.js"></script>
-	<script src="js/main.js"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
+// === NAV ACTIVE STATE ===
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 50 ? 'rgba(3,5,8,0.85)' : 'rgba(3,5,8,0.3)';
+});
+</script>
 </body>
-
 </html>
